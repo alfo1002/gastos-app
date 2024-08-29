@@ -1,10 +1,28 @@
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import 'react-circular-progressbar/dist/styles.css'
+import { useBudget } from "../hooks/useBudget"
 import { AmountDisplay } from "./AmountDisplay"
 
 export const BudgetTracker = () => {
+
+    const { state, totalExpenses, resto } = useBudget()
+
+    const percentage = +((totalExpenses / state.budget) * 100).toFixed(2)
+    console.log(percentage)
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex justify-center">
-                <img src="/grafico.jpg" alt="Gastos" />
+                <CircularProgressbar
+                    value={percentage}
+                    text={`${percentage}% Gastado`}
+                    styles={buildStyles({
+                        textSize: '8px',
+                        pathColor: percentage >= 70 ? '#DC2626' : '#3b82f6',
+                        //textColor: 'black',
+                        trailColor: '#F5F5F5',
+                    })}
+                />
             </div>
             <div className="flex flex-col justify-center items-center gap-8">
                 <button type="button"
@@ -15,15 +33,15 @@ export const BudgetTracker = () => {
 
                 <AmountDisplay
                     label="Presupuesto"
-                    amount={300}
+                    amount={state.budget}
                 />
                 <AmountDisplay
                     label="Disponible"
-                    amount={200}
+                    amount={resto}
                 />
                 <AmountDisplay
                     label="Gastado"
-                    amount={100}
+                    amount={totalExpenses}
                 />
             </div>
         </div>
