@@ -69,7 +69,7 @@ export const ExpenseForm = () => {
         <form className="space-y-5" onSubmit={handleSubmit}>
             <legend className="text-center text-2xl font-black
             border-b-4 border-blue-500 py-2">
-                Nuevo Gasto
+                {state.editingId ? 'Edición' : 'Nuevo Gasto'}
             </legend>
 
             {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -147,7 +147,7 @@ export const ExpenseForm = () => {
             </div>
             <input
                 type="submit"
-                value="Agregar Gasto"
+                value={state.editingId ? 'Guardar Edición' : 'Agregar Gasto'}
                 className="uppercase w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             />
         </form>
