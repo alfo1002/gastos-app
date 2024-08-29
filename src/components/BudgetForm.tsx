@@ -1,10 +1,12 @@
-import { useState, ChangeEvent, useMemo } from "react"
+import { useState, ChangeEvent, useMemo, useEffect } from "react"
 import { useBudget } from "../hooks/useBudget"
 
 export const BudgetForm = () => {
 
     const [budget, setBudget] = useState(0)
     const { dispatch } = useBudget()
+
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setBudget(e.target.valueAsNumber)
