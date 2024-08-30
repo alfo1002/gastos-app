@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useMemo, useEffect } from "react"
+import { useState, ChangeEvent, useMemo } from "react"
 import { useBudget } from "../hooks/useBudget"
 
 export const BudgetForm = () => {
